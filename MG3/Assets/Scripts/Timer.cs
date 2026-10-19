@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     //
     // Make sure to TUNE this value in the INSPECTOR after you create it!
 
-    //private ??? ???;
+    private float timeleft;
 
     // STEP 1 -----------------------------------------------------------------
 
@@ -22,16 +22,16 @@ public class Timer : MonoBehaviour
     // For input, it needs a number to represent the amount of time the countdown
     //      should start with.
     // It does not have any output.
-    // 
-    //public ??? BeginTimer(??? ???)
-    //{
-        // Inside the method here, set the value of our timer member variable to
-        // the countdown start time parameter.
+    
 
-    //}
+    public void BeginTimer(float startTime)
+    {
+        timeleft = startTime;
+
+    }
 
     // STEP 2 -----------------------------------------------------------------
-
+    
     // STEP 3 -----------------------------------------------------------------
     // Uncomment the line below and fill in the ???s to create this method.
     //
@@ -42,8 +42,10 @@ public class Timer : MonoBehaviour
     // The method's name is a built-in one from Unity that runs EVERY FRAME.
     // It has no input or output.
     //
-    //private ??? ???()
-    //{
+    private void Update()
+    {
+        timeleft -= Time.deltaTime;
+    }
     // Time.deltaTime is a variable provided to us by Unity that represents
     //      how much time has passed since the last frame.
     // In this method body, use Time.deltaTime to decrease the the value of 
@@ -58,13 +60,15 @@ public class Timer : MonoBehaviour
         // STEP 4 -------------------------------------------------------------
         // REPLACE this line with a new line of code that reutrns the value of
         //      your time member variable.
-        return 0;
+        return timeleft;
         // STEP 4 -------------------------------------------------------------
     }
 
     // STEP 5 -----------------------------------------------------------------
-    // Write a method here named IsFinished that RETURNS TRUE IF our time member
-    //      variable is out of time.
+    public bool IsFinished()
+    {
+        return timeleft <=0;
+    }
     // Other classes can CALL this method to check if the timer is up.
     // It should be public, and has no input.
     
